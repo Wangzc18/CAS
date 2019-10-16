@@ -1,0 +1,70 @@
+<html lang="zh-CN">
+<head>
+    {% load bootstrap3 %}
+    {% bootstrap_css %}
+    {% bootstrap_javascript %}
+    {% bootstrap_messages %}
+</head>
+<body role="document">
+    <!-- ������ -->
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="/event_manage/">Patient Manage System</a>
+            </div>
+            <div id="navbar" class="collapse navbar-collapse">
+                <ul class="nav navbar-nav">
+                    <li class="active"><a href="#">你好</a></li>
+                    <li><a href="/guest_manage/">我好</a></li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="#">{{user}}</a></li>
+                    <li><a href="/logout/">退出</a></li>
+                </ul>
+            </div><!--/.nav-collapse -->
+        </div>
+    </nav>
+    <div class="container theme-showcase" role="main">
+        <!--��������-->
+        <div class="page-header">
+            <div id="navbar" class="navbar-collapse collapse">
+                <form class="navbar-form" method="get" action="/search_name/">
+                    <div class="form-group">
+                        <input name="name" type="text" placeholder="名称" class="form-control">
+                    </div>
+                    <button type="submit" class="btn btn-success">搜索</button>
+                </form>
+            </div><!--/.navbar-collapse -->
+        </div>
+        <div class="row" >
+            <div class="col-md-6">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>id</th>
+                            <th>身份证号</th>
+                            <th>姓名</th>
+                            <th>性别</th>
+                            <th>时间</th>
+                            <th>染色体图像</th>
+                            <th>ǩ����ʽ</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for patient in patients %}
+                        <tr>
+                            <td>{{ patient.ID }}</td>
+                            <td>{{ patient.id_card }}</td>
+                            <td>{{ patient.name }}</td>
+                            <td>{{ patient.sex }}</td>
+                            <td>{{ patient.create_time }}</td>
+                            <td><a href="/sign_index/{{ event.id }}/" target="{{ event.id }}_blank">录入</a></td>
+                            <td><a href="/sign_index2/{{ event.id }}/" target="{{ event.id }}_blank">sign_web</a></td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+</body>
+</html>
